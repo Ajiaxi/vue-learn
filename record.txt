@@ -1,0 +1,11 @@
+npm install --global vue-cli
+
+网络请求作者已经不推荐用vue-resource了，以后换axios吧
+
+> Listening at http://localhost:9090
+
+手机UI:vux https://vux.li/       
+PC UI:iview https://www.iviewui.com/
+
+框架：vue2 + vue-router2 + vuex +webpack+ es6
+

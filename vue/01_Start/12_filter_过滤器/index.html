@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div><li v-for="(item, index) in list" :key="index">{{item|get_cn_name}}</li></div>
+            <div><li v-for="(item, index) in list" :key="index">{{item|get_cn_name_global}}</li></div>
+        </div>
+    </body>
+    <script>
+        // 全局过滤器
+        Vue.filter('get_cn_name_global', function (val) {
+            switch (val) {
+                case "CN": return "中国(global)";
+                case "EN": return "英国(global)";
+                case "US": return "美国(global)";
+            }
+            return "未知";
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                // 数组操作:https://cn.vuejs.org/v2/guide/list.html
+                list:["CN", "EN", "US"],
+            },
+            filters:{
+                get_cn_name:function(val) {
+                    switch (val) {
+                        case "CN": return "中国";
+                        case "EN": return "英国";
+                        case "US": return "美国";
+                    }
+                    return "未知";
+                }
+            }
+        });
+    </script>
+</html>

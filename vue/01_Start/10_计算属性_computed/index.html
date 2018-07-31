@@ -1,0 +1,39 @@
+<!-- 计算属性 -->
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p>原始数据: {{num}}</p>
+            <p>计算后数据: {{func}}</p>
+        </div>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    num:1,
+                },
+                // 计算属性的 getter
+                computed: {
+                    // `this` 指向 vm 实例
+                    // 注意：只num的值不变，多次调用func会使用缓存中的数据，而不会重新计算
+                    // 这也意味着如果func中有类似Date.now()非响应式依赖时，多次调用也不会变
+                    func:function() {
+                        return this.num + 1;
+                    },
+
+                    // // getter
+                    // get:function() {
+                    //     return this.num;
+                    // }
+                    // // setter
+                    // set:function(val) {
+                    //     this.num = val;
+                    // }
+                }
+            });
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,27 @@
+
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p>原始数据: {{num}}</p>
+            <p>计算后数据: {{func()}}</p>
+        </div>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    num:1
+                },
+                methods: {
+                    // `this` 指向 vm 实例
+                    func:function() {
+                        return this.num + 1;
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>

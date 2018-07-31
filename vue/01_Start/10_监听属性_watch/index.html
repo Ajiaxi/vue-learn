@@ -1,0 +1,33 @@
+<!-- 计算属性 -->
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p>num1: {{num1}}</p>
+            <p>num2: {{num2}}</p>
+            <p>num3: {{num3}}</p>
+        </div>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    num1:1,
+                    num2:0,
+                    num3:0
+                },
+                // 计算属性的 getter
+                watch: {
+                    // 当num1发生变化时，num2、num3也会发生变化
+                    // 控制台输入:app._data.num1 = 2看看有什么变化
+                    num1:function(val) {
+                        this.num2 = val + 1;
+                        this.num3 = val + 2;
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>

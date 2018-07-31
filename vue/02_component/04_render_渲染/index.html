@@ -1,0 +1,53 @@
+
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <my-header :level="1">Hello world!</my-header>
+            <my-header :level="2">Hello world!</my-header>
+            <my-header :level="3">Hello world!</my-header>
+            <my-header :level="4">Hello world!</my-header>
+            <my-header :level="5">Hello world!</my-header>
+        </div>
+    </body>
+    <script>
+
+        var getChildrenTextContent = function (children) {
+            return children.map(function (node) {
+                return node.children ? getChildrenTextContent(node.children) : node.text
+            }).join('')
+        }
+
+        Vue.component('my-header', {
+            render: function (createElement) {
+                // 创建 kebabCase 风格的ID
+                var headingId = getChildrenTextContent(this.$slots.default)
+                .toLowerCase()
+                .replace(/\W+/g, '-')
+                .replace(/(^\-|\-$)/g, '')
+
+                return createElement(
+                    'h' + this.level,
+                    [
+                        createElement('a', {
+                            attrs: {
+                                name: headingId,
+                                href: '#' + headingId
+                            }
+                        }, this.$slots.default)
+                    ]
+                )
+            },
+            props: {
+                level: {
+                    type: Number,
+                    required: true
+                }
+            }
+        })
+
+        var app = new Vue({el: '#app'});
+    </script>
+</html>

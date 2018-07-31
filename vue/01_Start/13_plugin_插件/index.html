@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            Hello world
+        </div>
+    </body>
+    <script>
+
+        var MyPlugin = function() {};
+        MyPlugin.install = function (Vue, options) {
+            // 1. 添加全局方法或属性
+            Vue.myGlobalMethod = function () {
+            // 逻辑...
+            }
+
+            // 2. 添加全局资源(自定义指令)
+            Vue.directive('my-directive', {
+                bind (el, binding, vnode, oldVnode) {
+                // 逻辑...
+                }
+            })
+
+            // 3. 注入组件
+            Vue.mixin({
+                created: function () {
+                    this.hello()
+                    this.$myFunc()
+                },
+                data: function (){
+                    return {test:1}
+                },
+                methods: {
+                    hello: function () {
+                        console.log('data:' + JSON.stringify(this.$data))
+                    }
+                }
+            })
+
+            // 4. 添加实例方法
+            Vue.prototype.$myFunc = function (methodOptions) {
+                console.log("myFunc...");
+            }
+        }
+        Vue.use(MyPlugin)
+        var app = new Vue({
+            el: '#app'
+        });
+    </script>
+</html>

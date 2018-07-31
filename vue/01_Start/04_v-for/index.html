@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div><li v-for="(item, index) in list" :key="item.id">{{item.text}}</li></div>
+            <div><li v-for="(value, key) in object" :key="key">{{key}} : {{value}}</li></div>
+        </div>
+    </body>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                // 数组操作:https://cn.vuejs.org/v2/guide/list.html
+                list:[
+                    {id:1, text: '学习 JavaScript' },
+                    {id:2, text: '学习 Vue' },
+                    {id:3, text: '整个牛项目' }
+                ],
+                object: {
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    age: 30
+                }
+            }
+        });
+    </script>
+</html>

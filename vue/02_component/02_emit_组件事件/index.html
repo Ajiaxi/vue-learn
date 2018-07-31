@@ -1,0 +1,31 @@
+<!-- 双向绑定 -->
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!--@callback等价于v-on:callback-->
+            <my-component @callback="handleCallback"/>
+        </div>
+
+        </div>
+    </body>
+    <script>
+
+        Vue.component('my-component', {
+            props:['text'],
+            template:`<button v-on:click="$emit('callback', 0.1)">发送事件</button>`
+        });
+
+        var app = new Vue({
+            el: '#app',
+            methods:{
+                handleCallback:function(val) {
+                    console.log(val);
+                    alert('value is:' + val)
+                }
+            }
+        });
+    </script>
+</html>

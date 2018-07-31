@@ -1,0 +1,37 @@
+<!-- 双向绑定 -->
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!--
+            双向绑定
+            https://cn.vuejs.org/v2/guide/forms.html
+            v-model="message"等价于v-on:input="message = $event.target.value"
+            -->
+            <p>{{message}}</p>
+            <input v-model="message"/>
+            <custom-input v-model="message"/>
+        </div>
+    </body>
+    <script>
+
+        // 组件中的v-model
+        Vue.component('custom-input', {
+            props: ['value'],
+            template: `
+                <input
+                    v-bind:value="value"
+                    v-on:input="$emit('input', $event.target.value)"
+                >
+            `
+        });
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue'
+            }
+        });
+    </script>
+</html>
